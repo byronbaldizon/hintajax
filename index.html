@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hint Ajax</title>
+</head>
+<body>
+    <h1>AJAX</h1>
+    <h2>Auto Search</h2>
+    First Name: <input id="inputFirstName" type="text" onkeyup="search(this.value)">
+    <br>
+    <h4>HINT</h4>
+    <p id="hint"></p>
+    <script>
+        function search(theString){
+            if(theString.length==0){
+                document.getElementById("hint").innerHTML=" "
+                return
+            }else{
+            XHR = new XMLHttpRequest()
+            XHR.onload=function(){
+                document.getElementById("hint").innerHTML=XHR.responseText
+            }
+            XHR.open("GET","server.php?q="+theString,true)
+            XHR.send()
+            }
+        }
+    </script>
+</body>
+</html>
